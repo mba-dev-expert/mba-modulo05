@@ -40,6 +40,8 @@ builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
 builder.Services.AddScoped<IAlunoQueries, AlunoQueries>();
 builder.Services.AddScoped<IRequestHandler<CriarAlunoCommand, bool>, CriarAlunoCommandHandler>();
 builder.Services.AddScoped<IRequestHandler<AdicionarMatriculaCommand, bool>, AdicionarMatriculaCommandHandler>();
+builder.Services.AddScoped<IRequestHandler<ConcluirAulaCommand, bool>, ConcluirAulaCommandHandler>();
+builder.Services.AddScoped<IRequestHandler<ConcluirCursoCommand, bool>, ConcluirCursoCommandHandler>();
 //Notifications
 builder.Services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
 

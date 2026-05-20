@@ -116,7 +116,7 @@ public class AlunosController : MainController
     public async Task<ActionResult> ConcluirAula(Guid matriculaId, Guid aulaId,
         CancellationToken cancellationToken)
     {
-        var command = new ConluirAulaCommand(aulaId, matriculaId);
+        var command = new ConcluirAulaCommand(aulaId, matriculaId);
         await _mediatorHandler.EnviarComando(command);
         if (OperacaoValida()) return StatusCode(StatusCodes.Status201Created);
         var erro = ObterMensagemErro();
