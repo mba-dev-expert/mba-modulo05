@@ -12,6 +12,7 @@ using TelesEducacao.Auth.Data.Configuration;
 using TelesEducacao.Core.Communication.Mediator;
 using TelesEducacao.Core.Messages.CommomMessages.Notifications;
 using TelesEducacao.WebAPI.Core.Data;
+using TelesEducacao.WebAPI.Core.Extensions;
 using TelesEducacao.WebAPI.Core.Usuario;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -65,6 +66,8 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddMemoryCache();
 
+builder.Services.AddPlatformHealthChecks(builder.Configuration, builder.Environment);
+
 var app = builder.Build();
 
 app.Services.UseDbMigrationAuthHelper();
@@ -82,5 +85,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseJwksDiscovery();
+app.MapPlatformHealthChecks();
 
 app.Run();

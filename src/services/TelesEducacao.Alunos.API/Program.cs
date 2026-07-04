@@ -12,6 +12,7 @@ using TelesEducacao.Alunos.Domain;
 using TelesEducacao.Core.Communication.Mediator;
 using TelesEducacao.Core.Messages.CommomMessages.Notifications;
 using TelesEducacao.WebAPI.Core.Data;
+using TelesEducacao.WebAPI.Core.Extensions;
 using TelesEducacao.WebAPI.Core.Identidade;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -48,6 +49,8 @@ builder.Services.AddScoped<INotificationHandler<DomainNotification>, DomainNotif
 builder.Services.AddJwtConfiguration(builder.Configuration);
 
 builder.Services.AddMessageBusConfiguration(builder.Configuration);
+
+builder.Services.AddPlatformHealthChecks(builder.Configuration, builder.Environment);
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -98,5 +101,6 @@ app.UseHttpsRedirection();
 app.UseAuthConfiguration();
 
 app.MapControllers();
+app.MapPlatformHealthChecks();
 
 app.Run();
