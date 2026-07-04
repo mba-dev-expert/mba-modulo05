@@ -22,7 +22,7 @@ RABBITMQ_DEFAULT_USER=teleseducacao
 RABBITMQ_DEFAULT_PASS=TelesEduca123!
 ACCEPT_EULA=Y
 MSSQL_SA_PASSWORD=YourStrong!Passw0rd
-MSSQL_PID=Express
+MSSQL_PID=Developer
 ```
 
 ### Passo 2: Iniciar os serviços
@@ -63,7 +63,6 @@ Application started. Press Ctrl+C to shut down.
 - Auth: `http://localhost:5101/swagger`
 - Alunos: `http://localhost:5201/swagger`
 - Conteúdo: `http://localhost:5301/swagger`
-- Pagamentos: `http://localhost:5401/swagger`
 - BFF: `http://localhost:5035/swagger`
 
 ### Parar os serviços
