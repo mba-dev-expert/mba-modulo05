@@ -49,6 +49,8 @@ builder.Services.AddHttpClient<IConteudoService, ConteudoService>()
 
 builder.Services.AddJwtConfiguration(builder.Configuration);
 
+builder.Services.AddHealthChecks();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
@@ -98,6 +100,7 @@ app.UseHttpsRedirection();
 app.UseAuthConfiguration();
 
 app.MapControllers();
+app.MapPlatformHealthChecks();
 
 app.Use(async (context, next) =>
 {
