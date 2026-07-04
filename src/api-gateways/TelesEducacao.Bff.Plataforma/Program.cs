@@ -104,8 +104,8 @@ app.MapPlatformHealthChecks();
 
 app.Use(async (context, next) =>
 {
-	context.Response.Headers.Append("Content-Type", "application/json; charset=utf-8");
-	await next();
+    context.Response.Headers.Append("Content-Type", "application/json; charset=utf-8");
+    await next();
 });
 
 app.Run();

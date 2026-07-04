@@ -14,9 +14,9 @@ public interface ICursoAppService : IDisposable
     Task<AulaDto> ObterAula(Guid aulaId);
 
     //Task<Guid?> Adicionar(CriaCursoDto criaCursoDto);
-	Task<ResponseMessage> Adicionar(CriaCursoDto criaCursoDto);
+    Task<ResponseMessage> Adicionar(CriaCursoDto criaCursoDto);
 
-	Task Atualizar(AtualizaCursoDto cursoDto);
+    Task Atualizar(AtualizaCursoDto cursoDto);
 
     Task<bool> Remover(Guid id);
 

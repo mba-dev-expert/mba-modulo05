@@ -9,10 +9,10 @@ public abstract class Command : Message, IRequest<bool>
     [JsonIgnore]
     public DateTime Timestamp { get; private set; } = DateTime.Now;
 
-	[JsonIgnore]
+    [JsonIgnore]
     public ValidationResult ValidationResult { get; set; }
-	public virtual bool EhValido()
-	{
-		throw new NotImplementedException();
-	}
+    public virtual bool EhValido()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches-ignore:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    name: Build, lint e testes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Restore
+        run: dotnet restore TelesEducacao.sln
+
+      - name: Build
+        run: dotnet build TelesEducacao.sln --no-restore -c Release
+
+      - name: Lint (dotnet format)
+        run: dotnet format TelesEducacao.sln --no-restore --verify-no-changes --severity error
+
+      - name: Test
+        run: dotnet test TelesEducacao.sln --no-build -c Release
