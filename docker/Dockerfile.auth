@@ -5,7 +5,6 @@ WORKDIR /src
 # Copia apenas os csproj primeiro (cache inteligente)
 COPY src/services/TelesEducacao.Auth.API/*.csproj ./services/TelesEducacao.Auth.API/
 COPY src/services/TelesEducacao.Auth.Application/*.csproj ./services/TelesEducacao.Auth.Application/
-COPY src/services/TelesEducacao.Auth.Domain/*.csproj ./services/TelesEducacao.Auth.Domain/
 COPY src/services/TelesEducacao.Auth.Data/*.csproj ./services/TelesEducacao.Auth.Data/
 COPY src/building-blocks/TelesEducacao.Core/*.csproj ./building-blocks/TelesEducacao.Core/
 COPY src/building-blocks/TelesEducacao.MessageBus/*.csproj ./building-blocks/TelesEducacao.MessageBus/
@@ -25,5 +24,9 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build /app/publish .
 
-EXPOSE 5301
+RUN adduser --disabled-password --gecos "" appuser \
+    && chown -R appuser:appuser /app
+USER appuser
+
+EXPOSE 5101
 ENTRYPOINT ["dotnet", "TelesEducacao.Auth.API.dll"]
