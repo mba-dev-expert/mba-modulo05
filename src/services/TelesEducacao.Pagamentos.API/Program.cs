@@ -8,6 +8,7 @@ using TelesEducacao.Pagamentos.Data;
 using TelesEducacao.Pagamentos.Data.Configuration;
 using TelesEducacao.Pagamentos.Data.Repository;
 using TelesEducacao.WebAPI.Core.Data;
+using TelesEducacao.WebAPI.Core.Extensions;
 using TelesEducacao.WebAPI.Core.Identidade;
 
 // aliases pra evitar conflito com IConfigurationManager do .NET
@@ -39,6 +40,8 @@ builder.Services.AddScoped<IMediatorHandler, MediatorHandler>();
 builder.Services.AddJwtConfiguration(builder.Configuration);
 
 builder.Services.AddMessageBusConfiguration(builder.Configuration);
+
+builder.Services.AddPlatformHealthChecks(builder.Configuration, builder.Environment);
 
 builder.Services.AddAuthorization();
 
@@ -93,5 +96,6 @@ app.UseHttpsRedirection();
 app.UseAuthConfiguration();
 
 app.MapControllers();
+app.MapPlatformHealthChecks();
 
 app.Run();

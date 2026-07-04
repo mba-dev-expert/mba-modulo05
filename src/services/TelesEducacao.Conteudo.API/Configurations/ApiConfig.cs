@@ -1,6 +1,7 @@
 using TelesEducacao.Conteudos.Application.AutoMapper;
 using TelesEducacao.Conteudos.Data;
 using TelesEducacao.WebAPI.Core.Data;
+using TelesEducacao.WebAPI.Core.Extensions;
 using TelesEducacao.WebAPI.Core.Identidade;
 
 namespace TelesEducacao.Conteudo.API.Configurations;
@@ -36,6 +37,8 @@ public static class ApiConfig
 
         services.AddJwtConfiguration(configuration);
 
+        services.AddPlatformHealthChecks(configuration, environment);
+
         return services;
     }
 
@@ -53,6 +56,7 @@ public static class ApiConfig
         app.UseAuthConfiguration();
 
         app.MapControllers();
+        app.MapPlatformHealthChecks();
     }
 
 }
