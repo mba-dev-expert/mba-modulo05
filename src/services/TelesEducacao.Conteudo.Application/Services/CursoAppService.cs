@@ -19,20 +19,20 @@ public class CursoAppService : ICursoAppService
         _cargaHorariaService = cargaHorariaService;
     }
 
-	public async Task<ResponseMessage> Adicionar(CriaCursoDto criaCursoDto)
-	{
-		var validationResult = new ValidationResult();
-		var curso = _mapper.Map<Curso>(criaCursoDto);
-		_cursoRepository.Adicionar(curso);
+    public async Task<ResponseMessage> Adicionar(CriaCursoDto criaCursoDto)
+    {
+        var validationResult = new ValidationResult();
+        var curso = _mapper.Map<Curso>(criaCursoDto);
+        _cursoRepository.Adicionar(curso);
 
-		await _cursoRepository.UnitOfWork.Commit();
+        await _cursoRepository.UnitOfWork.Commit();
 
-		
 
-		return new ResponseMessage(validationResult);
-	}
 
-	public async Task<IEnumerable<CursoDto>> ObterTodos()
+        return new ResponseMessage(validationResult);
+    }
+
+    public async Task<IEnumerable<CursoDto>> ObterTodos()
     {
         return _mapper.Map<IEnumerable<CursoDto>>(await _cursoRepository.ObterTodos());
     }

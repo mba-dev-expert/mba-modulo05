@@ -7,52 +7,52 @@ namespace TelesEducacao.Conteudo.API.Configurations;
 
 public static class ApiConfig
 {
-	public static IServiceCollection AddApiConfigurations(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
-	{
-		services.AddControllers();
+    public static IServiceCollection AddApiConfigurations(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
+    {
+        services.AddControllers();
 
-		services.AddDatabase<ConteudosContext>(configuration, environment);
+        services.AddDatabase<ConteudosContext>(configuration, environment);
 
-		services.AddCors(options =>
-		{
-			options.AddPolicy("Total",
-				builder =>
-					builder
-						.AllowAnyOrigin()
-						.AllowAnyMethod()
-						.AllowAnyHeader());
-		});
+        services.AddCors(options =>
+        {
+            options.AddPolicy("Total",
+                builder =>
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+        });
 
-		services.AddAutoMapper(cfg => { },typeof(DtoToDomainMappingProfile),
-			typeof(DomainToDtoMappingProfile));
+        services.AddAutoMapper(cfg => { }, typeof(DtoToDomainMappingProfile),
+            typeof(DomainToDtoMappingProfile));
 
-		services.AddMediatR(cfg =>
-		{
-			//cfg.RegisterServicesFromAssembly(typeof(CriarCursoCommandHandler).Assembly);
-			cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
-		});
+        services.AddMediatR(cfg =>
+        {
+            //cfg.RegisterServicesFromAssembly(typeof(CriarCursoCommandHandler).Assembly);
+            cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+        });
 
-		services.AddMessageBusConfiguration(configuration);
+        services.AddMessageBusConfiguration(configuration);
 
-		services.AddJwtConfiguration(configuration);
+        services.AddJwtConfiguration(configuration);
 
-		return services;
-	}
+        return services;
+    }
 
-	public static void UseApiCoreConfigurations(this WebApplication app)
-	{
-		if (!app.Environment.IsDevelopment())
-		{
-			app.UseHttpsRedirection();
-		}
+    public static void UseApiCoreConfigurations(this WebApplication app)
+    {
+        if (!app.Environment.IsDevelopment())
+        {
+            app.UseHttpsRedirection();
+        }
 
-		app.UseRouting();
+        app.UseRouting();
 
-		app.UseCors("Total");
+        app.UseCors("Total");
 
-		app.UseAuthConfiguration();
+        app.UseAuthConfiguration();
 
-		app.MapControllers();
-	}
+        app.MapControllers();
+    }
 
 }
