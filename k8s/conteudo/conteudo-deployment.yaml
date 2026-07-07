@@ -1,0 +1,66 @@
+# Substitua <DOCKERHUB_USERNAME> pelo usuario/organizacao do Docker Hub
+# usado no workflow cd.yml.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: conteudo
+  namespace: teleseducacao
+  labels:
+    app: conteudo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: conteudo
+  template:
+    metadata:
+      labels:
+        app: conteudo
+    spec:
+      containers:
+        - name: conteudo
+          image: <DOCKERHUB_USERNAME>/teleseducacao-conteudo:latest
+          ports:
+            - containerPort: 5301
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: ASPNETCORE_ENVIRONMENT
+            - name: ASPNETCORE_URLS
+              value: "http://+:5301"
+            - name: AppSettings__AutenticacaoJwksUrl
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: AppSettings__AutenticacaoJwksUrl
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: ConnectionStrings__DefaultConnection_Conteudo
+            - name: MessageQueueConnection__MessageBus
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: MessageQueueConnection__MessageBus
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 5301
+            initialDelaySeconds: 20
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 5301
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
