@@ -28,6 +28,11 @@ public class AuthDbContext : IdentityDbContext<IdentityUser>, ISecurityKeyContex
             property.SetMaxLength(100);
         }
 
+        // O JWK serializado (chave de assinatura do JWT) não cabe em 100 caracteres.
+        modelBuilder.Entity<SecurityKeyWithPrivate>()
+            .Property(k => k.Parameters)
+            .HasColumnType("nvarchar(max)");
+
         modelBuilder.Ignore<Event>();
 
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
