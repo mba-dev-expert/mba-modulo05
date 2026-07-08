@@ -82,8 +82,7 @@ public class AlunoService : Service, IAlunoService
 
     public async Task<bool> AdicionarMatriculaAsync(Guid id, AdicionarMatriculaDto matriculaDto, CancellationToken cancellationToken)
     {
-        var conteudo = ObterConteudo(matriculaDto);
-        var response = await _httpClient.PostAsJsonAsync($"/alunos/{id}/matriculas", conteudo, cancellationToken);
+        var response = await _httpClient.PostAsJsonAsync($"/alunos/{id}/matriculas", matriculaDto, cancellationToken);
         return TratarErrosResponse(response);
     }
 

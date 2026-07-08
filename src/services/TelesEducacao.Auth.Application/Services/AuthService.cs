@@ -193,9 +193,11 @@ public class AuthService
         var token = await _context.RefreshTokens.AsNoTracking()
             .FirstOrDefaultAsync(u => u.Token == refreshToken, cancellationToken);
 
+        if (token == null) return null;
+
         var expirationDate = token.ExpirationDate.ToLocalTime();
 
-        return token != null && expirationDate > DateTime.Now
+        return expirationDate > DateTime.Now
             ? token
             : null;
     }
