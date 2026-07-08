@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: teleseducacao
+data:
+  ASPNETCORE_ENVIRONMENT: "Docker"
+  AppSettings__AutenticacaoJwksUrl: "http://auth:5101/jwks"
+  AppTokenSettings__RefreshTokenExpiration: "8"
+  AppServicesSettings__AuthUrl: "http://auth:5101"
+  AppServicesSettings__AlunoUrl: "http://alunos:5201"
+  AppServicesSettings__ConteudoUrl: "http://conteudo:5301"
+  AppServicesSettings__PagamentoUrl: "http://pagamentos:5401"

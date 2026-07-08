@@ -81,8 +81,8 @@ A solução foi desenhada seguindo a premissa de **Contextos Delimitados** e **M
 
 1.  **Clone o Repositório:**
     ```bash
-    git clone https://github.com/rafsecco/mba-modulo04.git
-    cd mba-modulo04
+    git clone https://github.com/mba-dev-expert/mba-modulo05.git
+    cd mba-modulo05
     ```
 
 2.  **Configuração do Banco de Dados:**
@@ -117,6 +117,7 @@ A solução foi desenhada seguindo a premissa de **Contextos Delimitados** e **M
         dotnet run --project src/services/TelesEducacao.Pagamentos.API
         dotnet run --project src/api-gateways/TelesEducacao.Bff.Plataforma
         ```
+
      * Em Ambiente **Staging** (SQL Server):
        * Inicie o RabbitMQ (Igual ao passo para Development):
        * Inicie o serviço do SQL Server local
@@ -134,7 +135,13 @@ A solução foi desenhada seguindo a premissa de **Contextos Delimitados** e **M
     * **Alunos API:** `http://localhost:5201`
     * **Auth API:** `http://localhost:5101`
     * **Conteudo API:** `http://localhost:5301`
-    
+    * **Pagamentos API:** `http://localhost:5401`
+
+### **Alternativas de Execução**
+Além da execução local via `dotnet run`, o projeto também pode ser executado com:
+* **Docker Compose:** sobe toda a stack (infraestrutura + serviços) em containers. Veja [docker/README.md](docker/README.md).
+* **Kubernetes:** manifests para rodar a plataforma em um cluster local (Minikube). Veja [k8s/README.md](k8s/README.md).
+
 ---
 
 ## **7. Documentação da API**
