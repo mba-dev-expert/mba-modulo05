@@ -28,6 +28,16 @@ public class AuthDbContext : IdentityDbContext<IdentityUser>, ISecurityKeyContex
             property.SetMaxLength(100);
         }
 
+        // O JWK serializado (chave de assinatura do JWT) não cabe em 100 caracteres.
+        // "nvarchar(max)" é sintaxe do SQL Server; no SQLite a coluna TEXT já não tem limite de tamanho.
+        var parametersProperty = modelBuilder.Entity<SecurityKeyWithPrivate>()
+            .Property(k => k.Parameters);
+
+        if (Database.IsSqlServer())
+            parametersProperty.HasColumnType("nvarchar(max)");
+        else
+            parametersProperty.Metadata.SetMaxLength(null);
+
         modelBuilder.Ignore<Event>();
 
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

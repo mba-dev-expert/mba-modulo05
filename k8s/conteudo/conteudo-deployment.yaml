@@ -17,6 +17,15 @@ spec:
       labels:
         app: conteudo
     spec:
+      initContainers:
+        - name: wait-for-dependencies
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              until nc -z -w2 database 1433; do echo "waiting for database"; sleep 5; done
+              until nc -z -w2 rabbitmq 5672; do echo "waiting for rabbitmq"; sleep 5; done
       containers:
         - name: conteudo
           image: <DOCKERHUB_USERNAME>/teleseducacao-conteudo:latest
