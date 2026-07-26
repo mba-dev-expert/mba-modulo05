@@ -1,4 +1,4 @@
-﻿using TelesEducacao.Conteudos.Domain;
+﻿using TelesEducacao.Conteudo.Domain;
 using TelesEducacao.Core.DomainObjects;
 
 namespace TelesEducacao.Conteudo.Domain.Tests

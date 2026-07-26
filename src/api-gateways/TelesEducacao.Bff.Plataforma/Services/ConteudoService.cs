@@ -6,10 +6,10 @@ namespace TelesEducacao.Bff.Plataforma.Services;
 
 public interface IConteudoService
 {
-    Task<List<CursoDto>> ObterTodos(CancellationToken cancellationToken);
-    Task<CursoDto> ObterPorId(Guid id, CancellationToken cancellationToken);
-    Task<List<AulaDto>> ObterAulasPorCurso(Guid cursoId, CancellationToken cancellationToken);
-    Task<AulaDto> ObterAula(Guid cursoId, Guid aulaId, CancellationToken cancellationToken);
+    Task<List<CursoDto>?> ObterTodos(CancellationToken cancellationToken);
+    Task<CursoDto?> ObterPorId(Guid id, CancellationToken cancellationToken);
+    Task<List<AulaDto>?> ObterAulasPorCurso(Guid cursoId, CancellationToken cancellationToken);
+    Task<AulaDto?> ObterAula(Guid cursoId, Guid aulaId, CancellationToken cancellationToken);
     Task<bool> Remove(Guid id, CancellationToken cancellationToken);
     Task<bool> Cria(CriaCursoDto criaCursoDto, CancellationToken cancellationToken);
     Task<bool> CriarAula(Guid cursoId, CriaAulaDto dto, CancellationToken cancellationToken);
@@ -26,7 +26,7 @@ public class ConteudoService : Service, IConteudoService
         _httpClient.BaseAddress = new Uri(settings.Value.ConteudoUrl);
     }
 
-    public async Task<AulaDto> ObterAula(Guid cursoId, Guid aulaId, CancellationToken cancellationToken)
+    public async Task<AulaDto?> ObterAula(Guid cursoId, Guid aulaId, CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync($"/Conteudo/{cursoId}/aulas/{aulaId}", cancellationToken);
 
@@ -38,7 +38,7 @@ public class ConteudoService : Service, IConteudoService
         return await DeserializarObjetoResponse<AulaDto>(response);
     }
 
-    public async Task<List<AulaDto>> ObterAulasPorCurso(Guid cursoId, CancellationToken cancellationToken)
+    public async Task<List<AulaDto>?> ObterAulasPorCurso(Guid cursoId, CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync($"/Conteudo/{cursoId}/aulas/", cancellationToken);
 
@@ -50,7 +50,7 @@ public class ConteudoService : Service, IConteudoService
         return await DeserializarObjetoResponse<List<AulaDto>>(response);
     }
 
-    public async Task<CursoDto> ObterPorId(Guid id, CancellationToken cancellationToken)
+    public async Task<CursoDto?> ObterPorId(Guid id, CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync($"/Conteudo/{id}", cancellationToken);
 
@@ -62,7 +62,7 @@ public class ConteudoService : Service, IConteudoService
         return await DeserializarObjetoResponse<CursoDto>(response);
     }
 
-    public async Task<List<CursoDto>> ObterTodos(CancellationToken cancellationToken)
+    public async Task<List<CursoDto>?> ObterTodos(CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync($"/Conteudo/", cancellationToken);
 

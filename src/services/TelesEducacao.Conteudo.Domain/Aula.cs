@@ -1,17 +1,20 @@
 ﻿using TelesEducacao.Core.DomainObjects;
 
-namespace TelesEducacao.Conteudos.Domain;
+namespace TelesEducacao.Conteudo.Domain;
 
 public class Aula : Entity
 {
-    public string Titulo { get; set; }
-    public string Conteudo { get; set; }
+    public string Titulo { get; set; } = null!;
+    public string Conteudo { get; set; } = null!;
     public TimeSpan? Duracao { get; set; } //Qual o tipo mais adequado?
 
     public List<string> MaterialApoio { get; private set; } = new();
     public Guid CursoId { get; set; }
 
-    public Curso Curso { get; set; }
+    public Curso Curso { get; set; } = null!;
+
+    protected Aula()
+    { }
 
     public Aula(string titulo, string conteudo, Guid cursoId)
     {

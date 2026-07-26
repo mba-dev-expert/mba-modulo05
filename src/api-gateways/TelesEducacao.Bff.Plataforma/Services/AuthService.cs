@@ -8,9 +8,9 @@ public interface IAuthService
 {
     Task<Guid> RegistrarAsync(RegistrarUsuarioDto dto, CancellationToken cancellationToken);
 
-    Task<UsuarioRespostaLogin> LoginAsync(LoginUserDto dto, CancellationToken cancellationToken);
+    Task<UsuarioRespostaLogin?> LoginAsync(LoginUserDto dto, CancellationToken cancellationToken);
 
-    Task<RefreshToken> RefreshTokenAsync(string refreshToken, CancellationToken cancellationToken);
+    Task<RefreshToken?> RefreshTokenAsync(string refreshToken, CancellationToken cancellationToken);
 }
 
 public class AuthService : Service, IAuthService
@@ -33,7 +33,7 @@ public class AuthService : Service, IAuthService
         return await DeserializarObjetoResponse<Guid>(response);
     }
 
-    public async Task<UsuarioRespostaLogin> LoginAsync(LoginUserDto dto, CancellationToken cancellationToken)
+    public async Task<UsuarioRespostaLogin?> LoginAsync(LoginUserDto dto, CancellationToken cancellationToken)
     {
         var conteudo = ObterConteudo(dto);
         var response = await _httpClient.PostAsync("/auth/acessar", conteudo, cancellationToken);
@@ -43,7 +43,7 @@ public class AuthService : Service, IAuthService
         return await DeserializarObjetoResponse<UsuarioRespostaLogin>(response);
     }
 
-    public async Task<RefreshToken> RefreshTokenAsync(string refreshToken, CancellationToken cancellationToken)
+    public async Task<RefreshToken?> RefreshTokenAsync(string refreshToken, CancellationToken cancellationToken)
     {
         var conteudo = ObterConteudo(refreshToken);
         var response = await _httpClient.PostAsync("/auth/refresh-token", conteudo, cancellationToken);

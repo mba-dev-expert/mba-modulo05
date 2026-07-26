@@ -83,7 +83,9 @@ public class AuthService
 
     public async Task<UsuarioRespostaLogin> GerarJwt(string email)
     {
-        var user = await _userManager.FindByEmailAsync(email);
+        var user = await _userManager.FindByEmailAsync(email)
+                   ?? throw new InvalidOperationException("Não foi encontrado nenhum usuário para o e-mail informado.");
+
         var claims = await _userManager.GetClaimsAsync(user);
 
         var identityClaims = await ObterClaimsUsuario(claims, user);
@@ -116,6 +118,8 @@ public class AuthService
 
     private async Task<ClaimsIdentity> ObterClaimsUsuario(ICollection<Claim> claims, IdentityUser user)
     {
+        ArgumentException.ThrowIfNullOrEmpty(user.Email, nameof(user));
+
         var userRoles = await _userManager.GetRolesAsync(user);
 
         claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id));
@@ -152,6 +156,8 @@ public class AuthService
     private UsuarioRespostaLogin ObterRespostaToken(string encodedToken, IdentityUser user,
         IEnumerable<Claim> claims, RefreshToken refreshToken)
     {
+        ArgumentException.ThrowIfNullOrEmpty(user.Email, nameof(user));
+
         return new UsuarioRespostaLogin
         {
             AccessToken = encodedToken,
@@ -188,7 +194,7 @@ public class AuthService
         return refreshToken;
     }
 
-    public async Task<RefreshToken> ObterRefreshToken(Guid refreshToken, CancellationToken cancellationToken)
+    public async Task<RefreshToken?> ObterRefreshToken(Guid refreshToken, CancellationToken cancellationToken)
     {
         var token = await _context.RefreshTokens.AsNoTracking()
             .FirstOrDefaultAsync(u => u.Token == refreshToken, cancellationToken);

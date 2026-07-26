@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TelesEducacao.Conteudos.Domain;
+using TelesEducacao.Conteudo.Domain;
 using TelesEducacao.Core.Data;
 
-namespace TelesEducacao.Conteudos.Data.Repository;
+namespace TelesEducacao.Conteudo.Data.Repository;
 
 public class CursoRepository : ICursoRepository
 {
@@ -15,7 +15,7 @@ public class CursoRepository : ICursoRepository
 
     public IUnitOfWork UnitOfWork => _context;
 
-    public async Task<Curso> ObterPorId(Guid id)
+    public async Task<Curso?> ObterPorId(Guid id)
     {
         return await _context.Cursos.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
     }
@@ -32,7 +32,7 @@ public class CursoRepository : ICursoRepository
             .ToListAsync();
     }
 
-    public async Task<Aula> ObterAula(Guid aulaId)
+    public async Task<Aula?> ObterAula(Guid aulaId)
     {
         return await _context.Aulas.AsNoTracking().FirstOrDefaultAsync(p => p.Id == aulaId);
     }
@@ -61,6 +61,8 @@ public class CursoRepository : ICursoRepository
     {
         var aula = await _context.Aulas
             .FirstOrDefaultAsync(a => a.Id == aulaId);
+
+        if (aula is null) return;
 
         _context.Aulas.Remove(aula);
     }

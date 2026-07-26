@@ -2,6 +2,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
+# Propriedades MSBuild compartilhadas (TargetFramework, Nullable, TreatWarningsAsErrors...)
+COPY Directory.Build.props ./
+
 # Copia apenas os csproj primeiro (cache inteligente)
 COPY src/services/TelesEducacao.Auth.API/*.csproj ./services/TelesEducacao.Auth.API/
 COPY src/services/TelesEducacao.Auth.Application/*.csproj ./services/TelesEducacao.Auth.Application/

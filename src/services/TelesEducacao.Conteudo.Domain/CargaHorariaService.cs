@@ -1,4 +1,4 @@
-﻿namespace TelesEducacao.Conteudos.Domain;
+﻿namespace TelesEducacao.Conteudo.Domain;
 
 public class CargaHorariaService : ICargaHorariaService
 {

@@ -11,10 +11,10 @@ public class AulaDto
     public Guid CursoId { get; set; }
 
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
-    public string Titulo { get; set; }
+    public string Titulo { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
-    public string Conteudo { get; set; }
+    public string Conteudo { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
     public TimeSpan Duracao { get; set; }
@@ -26,8 +26,8 @@ public class CriaAulaDto
     public Guid CursoId { get; set; }
 
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
-    public string Titulo { get; set; }
+    public string Titulo { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
-    public string Conteudo { get; set; }
+    public string Conteudo { get; set; } = string.Empty;
 }

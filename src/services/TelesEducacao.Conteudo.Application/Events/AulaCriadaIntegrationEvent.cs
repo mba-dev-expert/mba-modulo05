@@ -1,6 +1,6 @@
 using TelesEducacao.Core.Messages.CommomMessages.IntegrationEvents;
 
-namespace TelesEducacao.Conteudos.Application.Events;
+namespace TelesEducacao.Conteudo.Application.Events;
 
 public class AulaCriadaIntegrationEvent : IntegrationEvent
 {

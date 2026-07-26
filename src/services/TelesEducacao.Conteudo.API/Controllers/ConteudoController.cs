@@ -1,8 +1,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TelesEducacao.Conteudos.Application.Dtos;
-using TelesEducacao.Conteudos.Application.Services;
+using TelesEducacao.Conteudo.Application.Dtos;
+using TelesEducacao.Conteudo.Application.Services;
 using TelesEducacao.Core.Communication.Mediator;
 using TelesEducacao.Core.Messages.CommomMessages.IntegrationEvents;
 using TelesEducacao.Core.Messages.CommomMessages.Notifications;

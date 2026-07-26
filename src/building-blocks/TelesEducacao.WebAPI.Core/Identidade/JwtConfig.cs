@@ -14,7 +14,8 @@ public static class JwtConfig
         var appSettingsSection = configuration.GetSection("AppSettings");
         services.Configure<AppSettings>(appSettingsSection);
 
-        var appSettings = appSettingsSection.Get<AppSettings>();
+        var appSettings = appSettingsSection.Get<AppSettings>()
+                          ?? throw new InvalidOperationException("A seção de configuração 'AppSettings' não foi encontrada.");
 
         services.AddAuthentication(x =>
         {

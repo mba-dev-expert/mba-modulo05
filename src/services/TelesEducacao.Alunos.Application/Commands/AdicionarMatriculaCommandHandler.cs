@@ -28,7 +28,7 @@ public class AdicionarMatriculaCommandHandler : IRequestHandler<AdicionarMatricu
         var aluno = await _alunoRepository.ObterPorIdAsync(request.AlunoId, cancellationToken);
         if (aluno == null)
         {
-            _mediatorHandler.PublicarNotificacao(new DomainNotification(request.MessageType, "Aluno não encontrado."));
+            await _mediatorHandler.PublicarNotificacao(new DomainNotification(request.MessageType, "Aluno não encontrado."));
             return false;
         }
 

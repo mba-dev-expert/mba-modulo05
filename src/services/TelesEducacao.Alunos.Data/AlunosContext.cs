@@ -16,10 +16,10 @@ public class AlunosContext : DbContext, IUnitOfWork
         _mediatorHandler = mediatorHandler;
     }
 
-    public DbSet<Aluno> Alunos { get; set; }
-    public DbSet<Matricula> Matriculas { get; set; }
-    public DbSet<AulaConluida> AulasConcluidas { get; set; }
-    public DbSet<Certificado> Certificados { get; set; }
+    public DbSet<Aluno> Alunos { get; set; } = null!;
+    public DbSet<Matricula> Matriculas { get; set; } = null!;
+    public DbSet<AulaConluida> AulasConcluidas { get; set; } = null!;
+    public DbSet<Certificado> Certificados { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

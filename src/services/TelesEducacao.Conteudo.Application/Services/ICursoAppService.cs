@@ -1,17 +1,17 @@
-using TelesEducacao.Conteudos.Application.Dtos;
+using TelesEducacao.Conteudo.Application.Dtos;
 using TelesEducacao.Core.Messages.CommomMessages.IntegrationEvents;
 
-namespace TelesEducacao.Conteudos.Application.Services;
+namespace TelesEducacao.Conteudo.Application.Services;
 
 public interface ICursoAppService : IDisposable
 {
     Task<IEnumerable<CursoDto>> ObterTodos();
 
-    Task<CursoDto> ObterPorId(Guid id);
+    Task<CursoDto?> ObterPorId(Guid id);
 
     Task<IEnumerable<AulaDto>> ObterAulas(Guid cursoId);
 
-    Task<AulaDto> ObterAula(Guid aulaId);
+    Task<AulaDto?> ObterAula(Guid aulaId);
 
     //Task<Guid?> Adicionar(CriaCursoDto criaCursoDto);
     Task<ResponseMessage> Adicionar(CriaCursoDto criaCursoDto);

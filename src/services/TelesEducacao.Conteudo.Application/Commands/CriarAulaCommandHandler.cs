@@ -1,8 +1,8 @@
 using FluentValidation.Results;
 using MediatR;
-using TelesEducacao.Conteudos.Domain;
+using TelesEducacao.Conteudo.Domain;
 
-namespace TelesEducacao.Conteudos.Application.Commands;
+namespace TelesEducacao.Conteudo.Application.Commands;
 
 public class CriarAulaCommandHandler : IRequestHandler<CriarAulaCommand, bool>
 {

@@ -6,8 +6,8 @@ public class PagamentoMatricula
     public Guid CursoId { get; set; }
     public Guid MatriculaId { get; set; }
     public decimal Valor { get; set; }
-    public string NomeCartao { get; set; }
-    public string NumeroCartao { get; set; }
-    public string ExpiracaoCartao { get; set; }
-    public string CvvCartao { get; set; }
+    public required string NomeCartao { get; set; }
+    public required string NumeroCartao { get; set; }
+    public required string ExpiracaoCartao { get; set; }
+    public required string CvvCartao { get; set; }
 }

@@ -5,7 +5,7 @@ namespace TelesEducacao.WebAPI.Core.Usuario;
 
 public interface IAspNetUser
 {
-    string Name { get; }
+    string? Name { get; }
 
     Guid ObterUserId();
 

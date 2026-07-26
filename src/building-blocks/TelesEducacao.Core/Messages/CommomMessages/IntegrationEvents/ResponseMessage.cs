@@ -4,7 +4,7 @@ namespace TelesEducacao.Core.Messages.CommomMessages.IntegrationEvents;
 
 public class ResponseMessage : Message
 {
-    public ValidationResult ValidationResult { get; set; }
+    public ValidationResult ValidationResult { get; set; } = new();
 
     public ResponseMessage() { }
 
@@ -13,7 +13,7 @@ public class ResponseMessage : Message
         ValidationResult = validationResult;
     }
 
-    public ResponseMessage(bool success, string errorMessage = null)
+    public ResponseMessage(bool success, string? errorMessage = null)
     {
         if (success)
         {

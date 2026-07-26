@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TelesEducacao.Conteudos.Data;
+using TelesEducacao.Conteudo.Data;
 
 #nullable disable
 
-namespace TelesEducacao.Conteudos.Data.Migrations
+namespace TelesEducacao.Conteudo.Data.Migrations
 {
     [DbContext(typeof(ConteudosContext))]
     partial class ConteudosContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace TelesEducacao.Conteudos.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TelesEducacao.Conteudos.Domain.Aula", b =>
+            modelBuilder.Entity("TelesEducacao.Conteudo.Domain.Aula", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,7 +58,7 @@ namespace TelesEducacao.Conteudos.Data.Migrations
                     b.ToTable("Aulas");
                 });
 
-            modelBuilder.Entity("TelesEducacao.Conteudos.Domain.Curso", b =>
+            modelBuilder.Entity("TelesEducacao.Conteudo.Domain.Curso", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,9 +94,9 @@ namespace TelesEducacao.Conteudos.Data.Migrations
                     b.ToTable("Cursos");
                 });
 
-            modelBuilder.Entity("TelesEducacao.Conteudos.Domain.Aula", b =>
+            modelBuilder.Entity("TelesEducacao.Conteudo.Domain.Aula", b =>
                 {
-                    b.HasOne("TelesEducacao.Conteudos.Domain.Curso", "Curso")
+                    b.HasOne("TelesEducacao.Conteudo.Domain.Curso", "Curso")
                         .WithMany("Aulas")
                         .HasForeignKey("CursoId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -105,9 +105,9 @@ namespace TelesEducacao.Conteudos.Data.Migrations
                     b.Navigation("Curso");
                 });
 
-            modelBuilder.Entity("TelesEducacao.Conteudos.Domain.Curso", b =>
+            modelBuilder.Entity("TelesEducacao.Conteudo.Domain.Curso", b =>
                 {
-                    b.OwnsOne("TelesEducacao.Conteudos.Domain.ConteudoProgramatico", "ConteudoProgramatico", b1 =>
+                    b.OwnsOne("TelesEducacao.Conteudo.Domain.ConteudoProgramatico", "ConteudoProgramatico", b1 =>
                         {
                             b1.Property<Guid>("CursoId")
                                 .HasColumnType("uniqueidentifier");
@@ -136,7 +136,7 @@ namespace TelesEducacao.Conteudos.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TelesEducacao.Conteudos.Domain.Curso", b =>
+            modelBuilder.Entity("TelesEducacao.Conteudo.Domain.Curso", b =>
                 {
                     b.Navigation("Aulas");
                 });

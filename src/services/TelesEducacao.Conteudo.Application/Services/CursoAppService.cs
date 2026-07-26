@@ -1,10 +1,10 @@
 using AutoMapper;
 using FluentValidation.Results;
-using TelesEducacao.Conteudos.Application.Dtos;
-using TelesEducacao.Conteudos.Domain;
+using TelesEducacao.Conteudo.Application.Dtos;
+using TelesEducacao.Conteudo.Domain;
 using TelesEducacao.Core.Messages.CommomMessages.IntegrationEvents;
 
-namespace TelesEducacao.Conteudos.Application.Services;
+namespace TelesEducacao.Conteudo.Application.Services;
 
 public class CursoAppService : ICursoAppService
 {
@@ -37,7 +37,7 @@ public class CursoAppService : ICursoAppService
         return _mapper.Map<IEnumerable<CursoDto>>(await _cursoRepository.ObterTodos());
     }
 
-    public async Task<CursoDto> ObterPorId(Guid id)
+    public async Task<CursoDto?> ObterPorId(Guid id)
     {
         return _mapper.Map<CursoDto>(await _cursoRepository.ObterPorId(id));
     }
@@ -47,7 +47,7 @@ public class CursoAppService : ICursoAppService
         return _mapper.Map<IEnumerable<AulaDto>>(await _cursoRepository.ObterAulas(cursoId));
     }
 
-    public async Task<AulaDto> ObterAula(Guid aulaId)
+    public async Task<AulaDto?> ObterAula(Guid aulaId)
     {
         return _mapper.Map<AulaDto>(await _cursoRepository.ObterAula(aulaId));
     }
@@ -74,7 +74,9 @@ public class CursoAppService : ICursoAppService
 
     public async Task<bool> Remover(Guid id)
     {
-        var curso = await _cursoRepository.ObterPorId(id);
+        var curso = await _cursoRepository.ObterPorId(id)
+                    ?? throw new KeyNotFoundException("Curso não encontrado.");
+
         _cursoRepository.Remover(curso);
 
         return await _cursoRepository.UnitOfWork.Commit();

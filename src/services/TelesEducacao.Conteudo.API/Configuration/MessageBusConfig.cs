@@ -1,7 +1,7 @@
 using TelesEducacao.Core.Utils;
 using TelesEducacao.MessageBus;
 
-namespace TelesEducacao.Conteudo.API.Configurations;
+namespace TelesEducacao.Conteudo.API.Configuration;
 
 public static class MessageBusConfig
 {

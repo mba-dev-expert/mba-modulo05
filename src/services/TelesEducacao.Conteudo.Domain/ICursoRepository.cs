@@ -1,16 +1,16 @@
 ﻿using TelesEducacao.Core.Data;
 
-namespace TelesEducacao.Conteudos.Domain;
+namespace TelesEducacao.Conteudo.Domain;
 
 public interface ICursoRepository : IRepository<Curso>
 {
-    Task<Curso> ObterPorId(Guid id);
+    Task<Curso?> ObterPorId(Guid id);
 
     Task<IEnumerable<Curso>> ObterTodos();
 
     Task<IEnumerable<Aula>> ObterAulas(Guid cursoId);
 
-    Task<Aula> ObterAula(Guid aulaId);
+    Task<Aula?> ObterAula(Guid aulaId);
 
     void Adicionar(Curso curso);
 

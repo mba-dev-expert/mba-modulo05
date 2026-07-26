@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using TelesEducacao.Conteudos.Domain;
+using TelesEducacao.Conteudo.Domain;
 using TelesEducacao.Core.Data;
 using TelesEducacao.Core.Messages;
 
-namespace TelesEducacao.Conteudos.Data;
+namespace TelesEducacao.Conteudo.Data;
 
 public class ConteudosContext : DbContext, IUnitOfWork
 {
@@ -12,8 +12,8 @@ public class ConteudosContext : DbContext, IUnitOfWork
     {
     }
 
-    public DbSet<Curso> Cursos { get; set; }
-    public DbSet<Aula> Aulas { get; set; }
+    public DbSet<Curso> Cursos { get; set; } = null!;
+    public DbSet<Aula> Aulas { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
