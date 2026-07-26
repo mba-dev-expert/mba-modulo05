@@ -12,8 +12,8 @@ public class ConteudosContext : DbContext, IUnitOfWork
     {
     }
 
-    public DbSet<Curso> Cursos { get; set; }
-    public DbSet<Aula> Aulas { get; set; }
+    public DbSet<Curso> Cursos { get; set; } = null!;
+    public DbSet<Aula> Aulas { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

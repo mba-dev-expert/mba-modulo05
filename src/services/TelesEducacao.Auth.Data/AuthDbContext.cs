@@ -16,8 +16,8 @@ public class AuthDbContext : IdentityDbContext<IdentityUser>, ISecurityKeyContex
     {
     }
 
-    public DbSet<SecurityKeyWithPrivate> SecurityKeys { get; set; }
-    public DbSet<RefreshToken> RefreshTokens { get; set; }
+    public DbSet<SecurityKeyWithPrivate> SecurityKeys { get; set; } = null!;
+    public DbSet<RefreshToken> RefreshTokens { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

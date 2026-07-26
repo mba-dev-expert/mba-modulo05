@@ -4,13 +4,13 @@ namespace TelesEducacao.Conteudo.Domain
 {
     public class Curso : Entity, IAggregateRoot
     {
-        public string Nome { get; private set; }
-        public string Descricao { get; private set; }
+        public string Nome { get; private set; } = null!;
+        public string Descricao { get; private set; } = null!;
         public bool Ativo { get; private set; }
         public decimal Valor { get; private set; }
         public TimeSpan? CargaHoraria { get; set; }
 
-        public ConteudoProgramatico ConteudoProgramatico { get; private set; }
+        public ConteudoProgramatico ConteudoProgramatico { get; private set; } = null!;
         public List<Aula> Aulas { get; private set; } = new();
 
         protected Curso()

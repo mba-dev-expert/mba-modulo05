@@ -17,8 +17,8 @@ public class PagamentosContext : DbContext, IUnitOfWork
         _mediatorHandler = rebusHandler ?? throw new ArgumentNullException(nameof(rebusHandler));
     }
 
-    public DbSet<Pagamento> Pagamentos { get; set; }
-    public DbSet<Transacao> Transacoes { get; set; }
+    public DbSet<Pagamento> Pagamentos { get; set; } = null!;
+    public DbSet<Transacao> Transacoes { get; set; } = null!;
 
     public async Task<bool> Commit()
     {

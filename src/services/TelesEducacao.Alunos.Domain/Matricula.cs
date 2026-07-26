@@ -5,12 +5,12 @@ namespace TelesEducacao.Alunos.Domain;
 public class Matricula : Entity
 {
     public Guid AlunoId { get; private set; }
-    public Aluno Aluno { get; private set; }
+    public Aluno Aluno { get; private set; } = null!;
     public Guid CursoId { get; private set; }
 
     public MatriculaStatus? Status { get; private set; }
 
-    public List<Certificado> Certificados { get; private set; }
+    public List<Certificado> Certificados { get; private set; } = new();
 
     public Matricula(Guid alunoId, Guid cursoId)
     {

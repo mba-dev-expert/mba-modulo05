@@ -53,7 +53,7 @@ public class AlunoService : Service, IAlunoService
             return [];
         }
 
-        return await DeserializarObjetoResponse<IEnumerable<AlunoDto>>(response);
+        return await DeserializarObjetoResponse<IEnumerable<AlunoDto>>(response) ?? [];
     }
 
     public async Task<IEnumerable<MatriculaDto>> ObterMatriculasPorAlunoIdAsync(Guid id, CancellationToken cancellationToken)
@@ -64,7 +64,7 @@ public class AlunoService : Service, IAlunoService
             return [];
         }
 
-        return await DeserializarObjetoResponse<IEnumerable<MatriculaDto>>(response);
+        return await DeserializarObjetoResponse<IEnumerable<MatriculaDto>>(response) ?? [];
     }
 
     public async Task<bool> ConcluirAulaAsync(Guid matriculaId, Guid aulaId, CancellationToken cancellationToken)
@@ -105,6 +105,6 @@ public class AlunoService : Service, IAlunoService
             return [];
         }
 
-        return await DeserializarObjetoResponse<IEnumerable<AulaConcluidaDto>>(response);
+        return await DeserializarObjetoResponse<IEnumerable<AulaConcluidaDto>>(response) ?? [];
     }
 }

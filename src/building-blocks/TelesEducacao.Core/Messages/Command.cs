@@ -10,7 +10,7 @@ public abstract class Command : Message, IRequest<bool>
     public DateTime Timestamp { get; private set; } = DateTime.Now;
 
     [JsonIgnore]
-    public ValidationResult ValidationResult { get; set; }
+    public ValidationResult ValidationResult { get; set; } = new();
     public virtual bool EhValido()
     {
         throw new NotImplementedException();

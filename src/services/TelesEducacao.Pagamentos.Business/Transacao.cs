@@ -10,5 +10,5 @@ public class Transacao : Entity
     public StatusTransacao StatusTransacao { get; set; }
 
     // EF. Rel.
-    public Pagamento Pagamento { get; set; }
+    public Pagamento Pagamento { get; set; } = null!;
 }

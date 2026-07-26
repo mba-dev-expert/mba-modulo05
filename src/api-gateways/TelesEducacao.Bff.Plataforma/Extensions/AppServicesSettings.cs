@@ -2,8 +2,8 @@
 
 public class AppServicesSettings
 {
-    public string AlunoUrl { get; set; }
-    public string ConteudoUrl { get; set; }
-    public string PagamentoUrl { get; set; }
-    public string AuthUrl { get; set; }
+    public string AlunoUrl { get; set; } = string.Empty;
+    public string ConteudoUrl { get; set; } = string.Empty;
+    public string PagamentoUrl { get; set; } = string.Empty;
+    public string AuthUrl { get; set; } = string.Empty;
 }
