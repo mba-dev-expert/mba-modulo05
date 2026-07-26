@@ -1,4 +1,4 @@
-using TelesEducacao.Conteudo.API.Configurations;
+using TelesEducacao.Conteudo.API.Configuration;
 using TelesEducacao.Conteudo.Data.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);

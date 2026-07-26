@@ -4,7 +4,7 @@ using TelesEducacao.WebAPI.Core.Data;
 using TelesEducacao.WebAPI.Core.Extensions;
 using TelesEducacao.WebAPI.Core.Identidade;
 
-namespace TelesEducacao.Conteudo.API.Configurations;
+namespace TelesEducacao.Conteudo.API.Configuration;
 
 public static class ApiConfig
 {

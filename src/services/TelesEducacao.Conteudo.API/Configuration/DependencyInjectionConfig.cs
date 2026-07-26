@@ -8,7 +8,7 @@ using TelesEducacao.Conteudo.Domain;
 using TelesEducacao.Core.Communication.Mediator;
 using TelesEducacao.Core.Messages.CommomMessages.Notifications;
 
-namespace TelesEducacao.Conteudo.API.Configurations;
+namespace TelesEducacao.Conteudo.API.Configuration;
 
 public static class DependencyInjectionConfig
 {

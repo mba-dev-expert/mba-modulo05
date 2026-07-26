@@ -1,6 +1,6 @@
 using Microsoft.OpenApi.Models;
 
-namespace TelesEducacao.Conteudo.API.Configurations;
+namespace TelesEducacao.Conteudo.API.Configuration;
 
 public static class SwaggerConfigs
 {
