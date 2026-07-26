@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\building-blocks\TelesEducacao.Core\TelesEducacao.Core.csproj" />
-    <ProjectReference Include="..\..\src\services\TelesEducacao.Conteudo.Domain\TelesEducacao.Conteudos.Domain.csproj" />
+    <ProjectReference Include="..\..\src\services\TelesEducacao.Conteudo.Domain\TelesEducacao.Conteudo.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

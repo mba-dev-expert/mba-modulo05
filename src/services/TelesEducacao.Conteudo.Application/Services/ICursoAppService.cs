@@ -1,7 +1,7 @@
-using TelesEducacao.Conteudos.Application.Dtos;
+using TelesEducacao.Conteudo.Application.Dtos;
 using TelesEducacao.Core.Messages.CommomMessages.IntegrationEvents;
 
-namespace TelesEducacao.Conteudos.Application.Services;
+namespace TelesEducacao.Conteudo.Application.Services;
 
 public interface ICursoAppService : IDisposable
 {

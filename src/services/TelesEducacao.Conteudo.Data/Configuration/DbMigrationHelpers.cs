@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using TelesEducacao.Conteudos.Domain;
+using TelesEducacao.Conteudo.Domain;
 
-namespace TelesEducacao.Conteudos.Data.Configuration;
+namespace TelesEducacao.Conteudo.Data.Configuration;
 
 public static class DbMigrationHelperExtension
 {

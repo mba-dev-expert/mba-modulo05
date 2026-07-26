@@ -21,9 +21,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-//builder.Services.AddDbContext<AlunosContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
 builder.Services.AddDatabase<AlunosContext>(builder.Configuration, builder.Environment);
 
 builder.Services.AddAutoMapper(cfg => { },

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TelesEducacao.Conteudos.Application.Dtos;
+namespace TelesEducacao.Conteudo.Application.Dtos;
 
 public class ConteudoProgramaticoDto
 {

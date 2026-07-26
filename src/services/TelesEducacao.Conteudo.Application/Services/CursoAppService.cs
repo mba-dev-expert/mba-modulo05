@@ -1,10 +1,10 @@
 using AutoMapper;
 using FluentValidation.Results;
-using TelesEducacao.Conteudos.Application.Dtos;
-using TelesEducacao.Conteudos.Domain;
+using TelesEducacao.Conteudo.Application.Dtos;
+using TelesEducacao.Conteudo.Domain;
 using TelesEducacao.Core.Messages.CommomMessages.IntegrationEvents;
 
-namespace TelesEducacao.Conteudos.Application.Services;
+namespace TelesEducacao.Conteudo.Application.Services;
 
 public class CursoAppService : ICursoAppService
 {

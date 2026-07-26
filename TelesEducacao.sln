@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.4.11626.88
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conteudos", "Conteudos", "{2C47FF0C-83B7-48DB-BB6D-4CFD0ED5E34A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Conteudo", "Conteudo", "{2C47FF0C-83B7-48DB-BB6D-4CFD0ED5E34A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{EF11639C-E334-4721-BC7B-12205830A03E}"
 EndProject
@@ -29,11 +29,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelesEducacao.Alunos.Data",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelesEducacao.Alunos.Application", "src\services\TelesEducacao.Alunos.Application\TelesEducacao.Alunos.Application.csproj", "{1895F07A-B6CC-4737-8873-45BACD98DAD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelesEducacao.Conteudos.Domain", "src\services\TelesEducacao.Conteudo.Domain\TelesEducacao.Conteudos.Domain.csproj", "{0C16277D-CCB7-12C1-68FB-D77437729B9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelesEducacao.Conteudo.Domain", "src\services\TelesEducacao.Conteudo.Domain\TelesEducacao.Conteudo.Domain.csproj", "{0C16277D-CCB7-12C1-68FB-D77437729B9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelesEducacao.Conteudos.Data", "src\services\TelesEducacao.Conteudo.Data\TelesEducacao.Conteudos.Data.csproj", "{78B4278D-17E8-9026-DC15-282D61667068}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelesEducacao.Conteudo.Data", "src\services\TelesEducacao.Conteudo.Data\TelesEducacao.Conteudo.Data.csproj", "{78B4278D-17E8-9026-DC15-282D61667068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelesEducacao.Conteudos.Application", "src\services\TelesEducacao.Conteudo.Application\TelesEducacao.Conteudos.Application.csproj", "{A2486D46-86EE-6410-BA01-ED136745211B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelesEducacao.Conteudo.Application", "src\services\TelesEducacao.Conteudo.Application\TelesEducacao.Conteudo.Application.csproj", "{A2486D46-86EE-6410-BA01-ED136745211B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelesEducacao.Pagamentos.AntiCorruption", "src\services\TelesEducacao.Pagamentos.AntiCorruption\TelesEducacao.Pagamentos.AntiCorruption.csproj", "{1B8C4EFF-F4B1-0483-22A2-4D6915CBF88A}"
 EndProject

@@ -1,5 +1,5 @@
 using TelesEducacao.Conteudo.API.Configurations;
-using TelesEducacao.Conteudos.Data.Configuration;
+using TelesEducacao.Conteudo.Data.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApiConfigurations(builder.Configuration, builder.Environment);

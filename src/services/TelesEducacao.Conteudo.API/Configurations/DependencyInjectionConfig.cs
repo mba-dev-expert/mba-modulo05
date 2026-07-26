@@ -1,10 +1,10 @@
 using FluentValidation.Results;
 using MediatR;
-using TelesEducacao.Conteudos.Application.Commands;
-using TelesEducacao.Conteudos.Application.Services;
-using TelesEducacao.Conteudos.Data;
-using TelesEducacao.Conteudos.Data.Repository;
-using TelesEducacao.Conteudos.Domain;
+using TelesEducacao.Conteudo.Application.Commands;
+using TelesEducacao.Conteudo.Application.Services;
+using TelesEducacao.Conteudo.Data;
+using TelesEducacao.Conteudo.Data.Repository;
+using TelesEducacao.Conteudo.Domain;
 using TelesEducacao.Core.Communication.Mediator;
 using TelesEducacao.Core.Messages.CommomMessages.Notifications;
 

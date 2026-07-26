@@ -1,5 +1,5 @@
-using TelesEducacao.Conteudos.Application.AutoMapper;
-using TelesEducacao.Conteudos.Data;
+using TelesEducacao.Conteudo.Application.AutoMapper;
+using TelesEducacao.Conteudo.Data;
 using TelesEducacao.WebAPI.Core.Data;
 using TelesEducacao.WebAPI.Core.Extensions;
 using TelesEducacao.WebAPI.Core.Identidade;
@@ -29,7 +29,6 @@ public static class ApiConfig
 
         services.AddMediatR(cfg =>
         {
-            //cfg.RegisterServicesFromAssembly(typeof(CriarCursoCommandHandler).Assembly);
             cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
         });
 

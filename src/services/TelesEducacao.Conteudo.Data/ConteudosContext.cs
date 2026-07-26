@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using TelesEducacao.Conteudos.Domain;
+using TelesEducacao.Conteudo.Domain;
 using TelesEducacao.Core.Data;
 using TelesEducacao.Core.Messages;
 
-namespace TelesEducacao.Conteudos.Data;
+namespace TelesEducacao.Conteudo.Data;
 
 public class ConteudosContext : DbContext, IUnitOfWork
 {

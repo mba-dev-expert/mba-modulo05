@@ -13,8 +13,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\building-blocks\TelesEducacao.MessageBus\TelesEducacao.MessageBus.csproj" />
-    <ProjectReference Include="..\TelesEducacao.Conteudo.Data\TelesEducacao.Conteudos.Data.csproj" />
-    <ProjectReference Include="..\TelesEducacao.Conteudo.Domain\TelesEducacao.Conteudos.Domain.csproj" />
+    <ProjectReference Include="..\TelesEducacao.Conteudo.Data\TelesEducacao.Conteudo.Data.csproj" />
+    <ProjectReference Include="..\TelesEducacao.Conteudo.Domain\TelesEducacao.Conteudo.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

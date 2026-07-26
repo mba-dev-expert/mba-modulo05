@@ -1,6 +1,6 @@
 using TelesEducacao.Core.Messages;
 
-namespace TelesEducacao.Conteudos.Application.Commands;
+namespace TelesEducacao.Conteudo.Application.Commands;
 
 public class CriarCursoCommand : Command
 {
