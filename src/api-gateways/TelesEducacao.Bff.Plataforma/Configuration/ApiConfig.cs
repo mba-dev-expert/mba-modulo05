@@ -6,9 +6,15 @@ namespace TelesEducacao.Bff.Plataforma.Configuration;
 
 public static class ApiConfig
 {
+    private const string ServiceName = "bff";
+
     public static IServiceCollection AddApiConfigurations(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddControllers();
+
+        services.AddPlatformLogging(configuration, ServiceName);
+
+        services.AddPlatformMetrics(ServiceName);
 
         services.Configure<AppServicesSettings>(configuration.GetSection("AppServicesSettings"));
         services.AddCors(options =>
@@ -23,13 +29,15 @@ public static class ApiConfig
 
         services.AddJwtConfiguration(configuration);
 
-        services.AddHealthChecks();
+        services.AddGatewayHealthChecks(configuration);
 
         return services;
     }
 
     public static WebApplication UseApiCoreConfigurations(this WebApplication app)
     {
+        app.UsePlatformRequestLogging();
+
         app.UseCors("Total");
         app.UseSwaggerConfiguration();
 
@@ -39,6 +47,7 @@ public static class ApiConfig
 
         app.MapControllers();
         app.MapPlatformHealthChecks();
+        app.MapPlatformMetrics();
 
         return app;
     }

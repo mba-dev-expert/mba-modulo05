@@ -12,10 +12,17 @@ namespace TelesEducacao.Auth.API.Configuration;
 
 public static class ApiConfig
 {
+    private const string ServiceName = "auth";
+
     public static IServiceCollection AddApiConfigurations(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         // Services
         services.AddControllers();
+
+        // Observabilidade
+        services.AddPlatformLogging(configuration, ServiceName);
+
+        services.AddPlatformMetrics(ServiceName);
 
         // Database
         services.AddDatabase<AuthDbContext>(configuration, environment);
@@ -51,6 +58,8 @@ public static class ApiConfig
 
     public static void UseApiCoreConfigurations(this WebApplication app)
     {
+        app.UsePlatformRequestLogging();
+
         app.UseHttpsRedirection();
         app.UseAuthentication();
         app.UseAuthorization();
@@ -58,5 +67,6 @@ public static class ApiConfig
         app.MapControllers();
         app.UseJwksDiscovery();
         app.MapPlatformHealthChecks();
+        app.MapPlatformMetrics();
     }
 }

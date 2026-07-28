@@ -10,9 +10,15 @@ namespace TelesEducacao.Pagamentos.API.Configuration;
 
 public static class ApiConfig
 {
+    private const string ServiceName = "pagamentos";
+
     public static IServiceCollection AddApiConfigurations(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         services.AddControllers();
+
+        services.AddPlatformLogging(configuration, ServiceName);
+
+        services.AddPlatformMetrics(ServiceName);
 
         services.AddDatabase<PagamentosContext>(configuration, environment);
 
@@ -36,11 +42,14 @@ public static class ApiConfig
 
     public static void UseApiCoreConfigurations(this WebApplication app)
     {
+        app.UsePlatformRequestLogging();
+
         app.UseHttpsRedirection();
 
         app.UseAuthConfiguration();
 
         app.MapControllers();
         app.MapPlatformHealthChecks();
+        app.MapPlatformMetrics();
     }
 }

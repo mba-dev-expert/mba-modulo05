@@ -8,9 +8,15 @@ namespace TelesEducacao.Conteudo.API.Configuration;
 
 public static class ApiConfig
 {
+    private const string ServiceName = "conteudo";
+
     public static IServiceCollection AddApiConfigurations(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         services.AddControllers();
+
+        services.AddPlatformLogging(configuration, ServiceName);
+
+        services.AddPlatformMetrics(ServiceName);
 
         services.AddDatabase<ConteudosContext>(configuration, environment);
 
@@ -43,6 +49,8 @@ public static class ApiConfig
 
     public static void UseApiCoreConfigurations(this WebApplication app)
     {
+        app.UsePlatformRequestLogging();
+
         if (!app.Environment.IsDevelopment())
         {
             app.UseHttpsRedirection();
@@ -56,6 +64,7 @@ public static class ApiConfig
 
         app.MapControllers();
         app.MapPlatformHealthChecks();
+        app.MapPlatformMetrics();
     }
 
 }
