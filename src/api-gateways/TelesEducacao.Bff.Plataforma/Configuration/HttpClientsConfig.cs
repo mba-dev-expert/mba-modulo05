@@ -21,12 +21,14 @@ public static class HttpClientsConfig
         services.AddHttpClient<IAuthService, AuthService>()
             .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
             .AllowSelfSignedCertificate()
+            .AddPolicyHandler(PollyExtensions.EsperarTentar())
             .AddTransientHttpErrorPolicy(
                 p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
         services.AddHttpClient<IConteudoService, ConteudoService>()
             .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
             .AllowSelfSignedCertificate()
+            .AddPolicyHandler(PollyExtensions.EsperarTentar())
             .AddTransientHttpErrorPolicy(
                 p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
