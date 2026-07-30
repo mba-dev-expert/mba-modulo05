@@ -7,27 +7,27 @@ namespace TelesEducacao.Bff.Plataforma.Configuration;
 
 public static class HttpClientsConfig
 {
-    public static IServiceCollection AddHttpClientsConfiguration(this IServiceCollection services)
+    public static IServiceCollection AddHttpClientsConfiguration(this IServiceCollection services, IWebHostEnvironment environment)
     {
         services.AddTransient<HttpClientAuthorizationDelegatingHandler>();
 
         services.AddHttpClient<IAlunoService, AlunoService>()
             .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
-            .AllowSelfSignedCertificate()
+            .AllowSelfSignedCertificateInDevelopment(environment)
             .AddPolicyHandler(PollyExtensions.EsperarTentar())
             .AddTransientHttpErrorPolicy(
                 p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
         services.AddHttpClient<IAuthService, AuthService>()
             .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
-            .AllowSelfSignedCertificate()
+            .AllowSelfSignedCertificateInDevelopment(environment)
             .AddPolicyHandler(PollyExtensions.EsperarTentar())
             .AddTransientHttpErrorPolicy(
                 p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
         services.AddHttpClient<IConteudoService, ConteudoService>()
             .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
-            .AllowSelfSignedCertificate()
+            .AllowSelfSignedCertificateInDevelopment(environment)
             .AddPolicyHandler(PollyExtensions.EsperarTentar())
             .AddTransientHttpErrorPolicy(
                 p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));

@@ -20,15 +20,7 @@ public static class ApiConfig
 
         services.AddDatabase<ConteudosContext>(configuration, environment);
 
-        services.AddCors(options =>
-        {
-            options.AddPolicy("Total",
-                builder =>
-                    builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-        });
+        services.AddPlatformCors(configuration, environment);
 
         services.AddAutoMapper(cfg => { }, typeof(DtoToDomainMappingProfile),
             typeof(DomainToDtoMappingProfile));
@@ -58,7 +50,7 @@ public static class ApiConfig
 
         app.UseRouting();
 
-        app.UseCors("Total");
+        app.UseCors(CorsExtensions.PolicyName);
 
         app.UseAuthConfiguration();
 
