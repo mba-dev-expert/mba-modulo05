@@ -8,7 +8,7 @@ public static class ApiConfig
 {
     private const string ServiceName = "bff";
 
-    public static IServiceCollection AddApiConfigurations(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddApiConfigurations(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         services.AddControllers();
 
@@ -17,15 +17,7 @@ public static class ApiConfig
         services.AddPlatformMetrics(ServiceName);
 
         services.Configure<AppServicesSettings>(configuration.GetSection("AppServicesSettings"));
-        services.AddCors(options =>
-        {
-            options.AddPolicy("Total",
-                builder =>
-                    builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-        });
+        services.AddPlatformCors(configuration, environment);
 
         services.AddJwtConfiguration(configuration);
 
@@ -38,7 +30,7 @@ public static class ApiConfig
     {
         app.UsePlatformRequestLogging();
 
-        app.UseCors("Total");
+        app.UseCors(CorsExtensions.PolicyName);
         app.UseSwaggerConfiguration();
 
         app.UseHttpsRedirection();
