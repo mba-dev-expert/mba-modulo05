@@ -11,3 +11,7 @@ data:
   AppServicesSettings__AlunoUrl: "http://alunos:5201"
   AppServicesSettings__ConteudoUrl: "http://conteudo:5301"
   AppServicesSettings__PagamentoUrl: "http://pagamentos:5401"
+  # Obrigatorio fora de Development: BFF e Conteudo.API derrubam o startup se a lista vier
+  # vazia (ver CorsExtensions.cs). Ajuste para as origens reais do front-end.
+  CorsSettings__AllowedOrigins__0: "http://teleseducacao.local"
+  CorsSettings__AllowedOrigins__1: "http://localhost:3000"

@@ -1,14 +1,15 @@
+# StatefulSet, nao Deployment+PVC avulso: o volumeClaimTemplates da identidade estavel de
+# armazenamento ao pod "database-0" e evita dois pods disputarem o mesmo PVC num rollout.
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: database
   namespace: teleseducacao
   labels:
     app: database
 spec:
+  serviceName: database
   replicas: 1
-  strategy:
-    type: Recreate
   selector:
     matchLabels:
       app: database
@@ -52,7 +53,12 @@ spec:
             limits:
               cpu: "1"
               memory: "2Gi"
-      volumes:
-        - name: sqlserver-data
-          persistentVolumeClaim:
-            claimName: sqlserver-data
+  volumeClaimTemplates:
+    - metadata:
+        name: sqlserver-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi

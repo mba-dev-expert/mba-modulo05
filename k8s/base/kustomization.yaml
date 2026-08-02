@@ -1,0 +1,29 @@
+# Nao aplique a base sozinha: falta a Secret "app-secrets", gerada so pelos overlays.
+# Use `kubectl apply -k k8s/overlays/local`.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - namespace.yaml
+  - configmap-app-config.yaml
+  - ingress.yaml
+  - infra/sqlserver-statefulset.yaml
+  - infra/sqlserver-service.yaml
+  - infra/rabbitmq-deployment.yaml
+  - infra/rabbitmq-service.yaml
+  - infra/rabbitmq-pvc.yaml
+  - auth/auth-deployment.yaml
+  - auth/auth-service.yaml
+  - auth/auth-hpa.yaml
+  - alunos/alunos-deployment.yaml
+  - alunos/alunos-service.yaml
+  - alunos/alunos-hpa.yaml
+  - conteudo/conteudo-deployment.yaml
+  - conteudo/conteudo-service.yaml
+  - conteudo/conteudo-hpa.yaml
+  - pagamentos/pagamentos-deployment.yaml
+  - pagamentos/pagamentos-service.yaml
+  - pagamentos/pagamentos-hpa.yaml
+  - bff/bff-deployment.yaml
+  - bff/bff-service.yaml
+  - bff/bff-hpa.yaml
