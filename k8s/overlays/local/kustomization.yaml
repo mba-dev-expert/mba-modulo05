@@ -1,0 +1,33 @@
+# Overlay para cluster local (Minikube/Kind). Construa as imagens com o nome:tag abaixo e
+# carregue no cluster (`minikube image load teleseducacao-auth:local`) - ver o README.
+# Nao ha usuario de Docker Hub fixo aqui de proposito: o cd.yml publica em um secret do GitHub
+# Actions. Um overlay de producao faria `kustomize edit set image` no pipeline, sem editar arquivo.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Necessario mesmo com o namespace ja fixado nos manifestos da base: sem isso a Secret gerada
+# nasce sem namespace e o Kustomize se recusa a reescrever os secretKeyRef para o nome com hash.
+namespace: teleseducacao
+
+resources:
+  - ../../base
+
+images:
+  - name: teleseducacao-auth
+    newTag: local
+  - name: teleseducacao-alunos
+    newTag: local
+  - name: teleseducacao-conteudo
+    newTag: local
+  - name: teleseducacao-pagamentos
+    newTag: local
+  - name: teleseducacao-bff
+    newTag: local
+
+# Gera a Secret "app-secrets" a partir de um .env nao versionado (.gitignore, padrao "**.env").
+# Copie app-secrets.env.example para app-secrets.env. O Kustomize sufixa o nome com um hash do
+# conteudo e atualiza sozinho os secretKeyRef da base.
+secretGenerator:
+  - name: app-secrets
+    envs:
+      - app-secrets.env

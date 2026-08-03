@@ -1,21 +1,24 @@
-# Substitua <DOCKERHUB_USERNAME> pelo usuario/organizacao do Docker Hub
-# usado no workflow cd.yml.
+# image: nome/tag canonicos - ver auth/auth-deployment.yaml.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: conteudo
+  name: alunos
   namespace: teleseducacao
   labels:
-    app: conteudo
+    app: alunos
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: conteudo
+      app: alunos
   template:
     metadata:
       labels:
-        app: conteudo
+        app: alunos
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "5201"
+        prometheus.io/path: "/metrics"
     spec:
       initContainers:
         - name: wait-for-dependencies
@@ -27,10 +30,11 @@ spec:
               until nc -z -w2 database 1433; do echo "waiting for database"; sleep 5; done
               until nc -z -w2 rabbitmq 5672; do echo "waiting for rabbitmq"; sleep 5; done
       containers:
-        - name: conteudo
-          image: <DOCKERHUB_USERNAME>/teleseducacao-conteudo:latest
+        - name: alunos
+          image: teleseducacao-alunos:latest
+          imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 5301
+            - containerPort: 5201
           env:
             - name: ASPNETCORE_ENVIRONMENT
               valueFrom:
@@ -38,7 +42,7 @@ spec:
                   name: app-config
                   key: ASPNETCORE_ENVIRONMENT
             - name: ASPNETCORE_URLS
-              value: "http://+:5301"
+              value: "http://+:5201"
             - name: AppSettings__AutenticacaoJwksUrl
               valueFrom:
                 configMapKeyRef:
@@ -48,7 +52,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: app-secrets
-                  key: ConnectionStrings__DefaultConnection_Conteudo
+                  key: ConnectionStrings__DefaultConnection_Alunos
             - name: MessageQueueConnection__MessageBus
               valueFrom:
                 secretKeyRef:
@@ -57,13 +61,13 @@ spec:
           livenessProbe:
             httpGet:
               path: /health/live
-              port: 5301
+              port: 5201
             initialDelaySeconds: 20
             periodSeconds: 15
           readinessProbe:
             httpGet:
               path: /health/ready
-              port: 5301
+              port: 5201
             initialDelaySeconds: 20
             periodSeconds: 10
           resources:

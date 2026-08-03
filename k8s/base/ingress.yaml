@@ -1,0 +1,52 @@
+# Requer o ingress-nginx no cluster (`minikube addons enable ingress`).
+# BFF na raiz, ponto de entrada do front-end; as 4 APIs por path para chamada direta e depuracao.
+# O rewrite-target tira o prefixo ("/auth/xyz" -> "/xyz"): os servicos nao conhecem esse prefixo.
+# Resolva "teleseducacao.local" para o IP do controller (`minikube ip`) via /etc/hosts ou tunnel.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: teleseducacao
+  namespace: teleseducacao
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: teleseducacao.local
+      http:
+        paths:
+          - path: /auth(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: auth
+                port:
+                  number: 5101
+          - path: /alunos(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: alunos
+                port:
+                  number: 5201
+          - path: /conteudo(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: conteudo
+                port:
+                  number: 5301
+          - path: /pagamentos(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: pagamentos
+                port:
+                  number: 5401
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: bff
+                port:
+                  number: 5035

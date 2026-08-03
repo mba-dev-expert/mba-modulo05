@@ -1,5 +1,4 @@
-# Substitua <DOCKERHUB_USERNAME> pelo usuario/organizacao do Docker Hub
-# usado no workflow cd.yml.
+# image: nome/tag canonicos - ver auth/auth-deployment.yaml.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,7 +7,7 @@ metadata:
   labels:
     app: pagamentos
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: pagamentos
@@ -16,10 +15,24 @@ spec:
     metadata:
       labels:
         app: pagamentos
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "5401"
+        prometheus.io/path: "/metrics"
     spec:
+      initContainers:
+        - name: wait-for-dependencies
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              until nc -z -w2 database 1433; do echo "waiting for database"; sleep 5; done
+              until nc -z -w2 rabbitmq 5672; do echo "waiting for rabbitmq"; sleep 5; done
       containers:
         - name: pagamentos
-          image: <DOCKERHUB_USERNAME>/teleseducacao-pagamentos:latest
+          image: teleseducacao-pagamentos:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5401
           env:

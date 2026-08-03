@@ -1,0 +1,13 @@
+# ClusterIP comum, nao headless: ha uma unica replica e as connection strings usam so o nome
+# "database". O ClusterIP ja da o nome estavel e reaponta o endpoint na hora ao reagendar o pod.
+apiVersion: v1
+kind: Service
+metadata:
+  name: database
+  namespace: teleseducacao
+spec:
+  selector:
+    app: database
+  ports:
+    - port: 1433
+      targetPort: 1433
