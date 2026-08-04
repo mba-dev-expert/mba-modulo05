@@ -1,5 +1,4 @@
-﻿using TelesEducacao.Conteudo.Domain;
-using TelesEducacao.Core.DomainObjects;
+﻿using TelesEducacao.Core.DomainObjects;
 
 namespace TelesEducacao.Conteudo.Domain.Tests
 {
@@ -26,7 +25,7 @@ namespace TelesEducacao.Conteudo.Domain.Tests
                 new Curso("Nome", "Descricao", false, 0, new ConteudoProgramatico("Conteudo 1", "Descricao conteudo"))
             );
 
-            Assert.Equal("O campo Valor do curso não pode se menor igual a 0", ex.Message);
+            Assert.Equal("O campo Valor do curso não pode ser menor igual a 0", ex.Message);
 
             ex = Assert.Throws<DomainException>(() =>
                 new Curso("Nome", "Descricao", false, 100, new ConteudoProgramatico(string.Empty, "Descricao conteudo"))

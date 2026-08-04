@@ -47,7 +47,7 @@ namespace TelesEducacao.Conteudo.Domain
         public void AlterarValor(decimal valor)
         {
             Valor = valor;
-            Validacoes.ValidarSeMenorQue(Valor, 1, "O campo Valor do curso não pode se menor igual a 0");
+            Validacoes.ValidarSeMenorQue(Valor, 1, "O campo Valor do curso não pode ser menor igual a 0");
         }
 
         public void AdicionarCargaHoraria(TimeSpan duracao)
@@ -66,7 +66,7 @@ namespace TelesEducacao.Conteudo.Domain
         {
             Validacoes.ValidarSeVazio(Nome, "O campo Nome do curso não pode estar vazio");
             Validacoes.ValidarSeVazio(Descricao, "O campo Descricao do curso não pode estar vazio");
-            Validacoes.ValidarSeMenorQue(Valor, 1, "O campo Valor do curso não pode se menor igual a 0");
+            Validacoes.ValidarSeMenorQue(Valor, 1, "O campo Valor do curso não pode ser menor igual a 0");
         }
     }
 }
