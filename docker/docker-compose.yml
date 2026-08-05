@@ -42,6 +42,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:5101
+      - ConnectionStrings__DefaultConnection=Server=database,1433;Database=TelesEducacaoAuthDb;User Id=sa;Password=${MSSQL_SA_PASSWORD};Encrypt=True;TrustServerCertificate=True;MultipleActiveResultSets=true
+      - MessageQueueConnection__MessageBus=host=rabbitmq:5672;username=${RABBITMQ_DEFAULT_USER};password=${RABBITMQ_DEFAULT_PASS};publisherConfirms=true;timeout=100
     depends_on:
       database:
         condition: service_healthy
@@ -57,6 +59,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:5201
+      - ConnectionStrings__DefaultConnection=Server=database,1433;Database=TelesEducacaoAlunosDb;User Id=sa;Password=${MSSQL_SA_PASSWORD};Encrypt=True;TrustServerCertificate=True;MultipleActiveResultSets=true
+      - MessageQueueConnection__MessageBus=host=rabbitmq:5672;username=${RABBITMQ_DEFAULT_USER};password=${RABBITMQ_DEFAULT_PASS};publisherConfirms=true;timeout=100
     depends_on:
       database:
         condition: service_healthy
@@ -74,6 +78,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:5301
+      - ConnectionStrings__DefaultConnection=Server=database,1433;Database=TelesEducacaoConteudoDb;User Id=sa;Password=${MSSQL_SA_PASSWORD};Encrypt=True;TrustServerCertificate=True;MultipleActiveResultSets=true
+      - MessageQueueConnection__MessageBus=host=rabbitmq:5672;username=${RABBITMQ_DEFAULT_USER};password=${RABBITMQ_DEFAULT_PASS};publisherConfirms=true;timeout=100
     depends_on:
       database:
         condition: service_healthy
@@ -91,6 +97,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:5401
+      - ConnectionStrings__DefaultConnection=Server=database,1433;Database=TelesEducacaoPagamentosDb;User Id=sa;Password=${MSSQL_SA_PASSWORD};Encrypt=True;TrustServerCertificate=True;MultipleActiveResultSets=true
+      - MessageQueueConnection__MessageBus=host=rabbitmq:5672;username=${RABBITMQ_DEFAULT_USER};password=${RABBITMQ_DEFAULT_PASS};publisherConfirms=true;timeout=100
     depends_on:
       database:
         condition: service_healthy

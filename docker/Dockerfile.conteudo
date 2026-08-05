@@ -28,9 +28,16 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build /app/publish .
 
-RUN adduser --disabled-password --gecos "" appuser \
+# curl: a imagem base nao traz cliente HTTP e o HEALTHCHECK precisa de um.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && adduser --disabled-password --gecos "" appuser \
     && chown -R appuser:appuser /app
 USER appuser
 
 EXPOSE 5301
+HEALTHCHECK --interval=15s --timeout=5s --start-period=20s --retries=5 \
+    CMD curl -f http://localhost:5301/health/live || exit 1
+
 ENTRYPOINT ["dotnet", "TelesEducacao.Conteudo.API.dll"]
